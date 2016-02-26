@@ -20,7 +20,7 @@
 
     &,
     &:visited {
-        color: $grey-color-dark;
+        color: $monokai-green;
     }
 }
 
@@ -33,7 +33,7 @@
     }
 
     .page-link {
-        color: $text-color;
+        color: $monokai-blue;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the last one

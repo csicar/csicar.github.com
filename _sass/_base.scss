@@ -91,15 +91,15 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color;
+    color: $monokai-red;
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        //color: lighten($monokai-red, 5%);
     }
 
     &:hover {
-        color: $text-color;
+        color: darken($monokai-red, 10%);
         text-decoration: underline;
     }
 }
@@ -130,9 +130,10 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $grey-color-light;
+    border: 1px solid lighten($monokai-dark, 50%);
     border-radius: 3px;
-    background-color: #eef;
+    background-color: lighten($monokai-dark, 20%);
+    color: $monokai-blue;
 }
 
 code {
