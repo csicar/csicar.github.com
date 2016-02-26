@@ -14,5 +14,10 @@ url: "http://csicar.github.io" # the base hostname & protocol for your site
 twitter_username: technikid
 github_username:  csicar
 
+fenced_code_blocks: true
+
+markdown_ext: md
+future: true
+
 # Build settings
 markdown: kramdown

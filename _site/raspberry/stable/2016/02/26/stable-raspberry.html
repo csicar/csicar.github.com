@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>About</title>
-  <meta name="description" content="blog of csicar">
+  <title>Make the Raspberry running stable</title>
+  <meta name="description" content="I always loved the raspberry and wanted to them permanently for different purposes,but no matter what, they seemed to bug out after so time.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://csicar.github.io/about/">
+  <link rel="canonical" href="http://csicar.github.io/raspberry/stable/2016/02/26/stable-raspberry.html">
   <link rel="alternate" type="application/rss+xml" title="CsiCar" href="http://csicar.github.io/feed.xml">
 </head>
 
@@ -54,20 +54,40 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <article class="post">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title" itemprop="name headline">Make the Raspberry running stable</h1>
+    <p class="post-meta"><time datetime="2016-02-26T22:57:13+01:00" itemprop="datePublished">Feb 26, 2016</time></p>
   </header>
 
-  <div class="post-content">
-    <p>#TODO</p>
+  <div class="post-content" itemprop="articleBody">
+    <p>I always loved the raspberry and wanted to them permanently for different purposes,
+but no matter what, they seemed to bug out after so time.</p>
 
-<p>/* I guess that’s pretty much the best description for be */</p>
+<p>Good, high quality power supplies didn’t help in my case.</p>
 
-<p>or maybe</p>
+<p>Even with a high quality PSU only <code class="highlighter-rouge">4.8 Volts</code> where on the test points of the
+raspberry.</p>
 
-<p><a href="about:blank">about:blank</a></p>
+<h2 id="my-solution">My Solution</h2>
+
+<ol>
+  <li>Use a Buck-Converter that outputs about <code class="highlighter-rouge">5.2 Volts</code>
+ (The Buck-Converter is the <code class="highlighter-rouge">kis3r33s</code> available from china)
+ The advantage of this Buck-Converter is, that is can actually supply enough
+ amperage for the raspberry. The converter does not get warm.</li>
+  <li>I used the shortest USB-Cable I could find (about 15cm), so that the voltage
+  drop of the cable would be minimal.</li>
+</ol>
+
+<h2 id="effectiveness">Effectiveness</h2>
+
+<p>Now the Raspberry runs at <code class="highlighter-rouge">5.1-5.2 Volts</code> which is at the upper end of what the
+raspberry can handle.</p>
+
+<p>It seems like <strong>overvoltage is better than undervoltage</strong> when it comes to
+stability and the raspberry pi.</p>
 
   </div>
 

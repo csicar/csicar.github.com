@@ -11,8 +11,8 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #FD971F;
+  font: 400 16px/1.5 monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #ddd;
   background-color: #272822;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
@@ -56,6 +56,16 @@ li > ul,
 li > ol {
   margin-bottom: 0; }
 
+ol {
+  counter-reset: item; }
+  ol > li {
+    display: block; }
+    ol > li:before {
+      content: counter(item) ". ";
+      counter-increment: item;
+      color: #F92672;
+      margin-left: -1.7em; }
+
 /**
  * Headings
  */
@@ -91,7 +101,7 @@ blockquote {
 pre,
 code {
   font-size: 15px;
-  border: 1px solid #a9ac9d;
+  border: 1px solid #5d5f51;
   border-radius: 3px;
   background-color: #5d5f51;
   color: #66D9EF; }
@@ -291,7 +301,8 @@ pre {
 .post-title {
   font-size: 42px;
   letter-spacing: -1px;
-  line-height: 1; }
+  line-height: 1;
+  color: #F92672; }
   @media screen and (max-width: 800px) {
     .post-title {
       font-size: 36px; } }
@@ -299,12 +310,16 @@ pre {
 .post-content {
   margin-bottom: 30px; }
   .post-content h2 {
-    font-size: 32px; }
+    font-size: 32px;
+    color: #A6E22E; }
+    .post-content h2:before {
+      content: '##'; }
     @media screen and (max-width: 800px) {
       .post-content h2 {
         font-size: 28px; } }
   .post-content h3 {
-    font-size: 26px; }
+    font-size: 26px;
+    color: #A6E22E; }
     @media screen and (max-width: 800px) {
       .post-content h3 {
         font-size: 22px; } }

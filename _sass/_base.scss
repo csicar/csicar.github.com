@@ -65,6 +65,8 @@ figcaption {
 /**
  * Lists
  */
+
+
 ul, ol {
     margin-left: $spacing-unit;
 }
@@ -74,6 +76,20 @@ li {
     > ol {
          margin-bottom: 0;
     }
+}
+
+ol {
+  counter-reset: item;
+  > li {
+    display: block;
+
+    &:before {
+      content: counter(item) ". ";
+      counter-increment: item;
+      color: $monokai-red;
+      margin-left: -1.7em;
+    }
+  }
 }
 
 
@@ -130,7 +146,7 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid lighten($monokai-dark, 50%);
+    border: 1px solid lighten($monokai-dark, 20%);
     border-radius: 3px;
     background-color: lighten($monokai-dark, 20%);
     color: $monokai-blue;
