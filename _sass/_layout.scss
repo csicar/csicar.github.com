@@ -100,6 +100,15 @@
 .site-footer {
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
+
+    a {
+      color: $monokai-red;
+
+      &:hover {
+        color: darken($monokai-red, 20%);
+        text-decoration: none;
+      }
+    }
 }
 
 .footer-heading {
@@ -169,6 +178,19 @@
  */
 .page-content {
     padding: $spacing-unit 0;
+
+    ul {
+      list-style: none;
+      > li {
+
+        &:before {
+          content: "- ";
+          font-weight: bold;
+          color: $monokai-red;
+          margin-left: -1.7em;
+        }
+      }
+    }
 }
 
 .page-heading {
