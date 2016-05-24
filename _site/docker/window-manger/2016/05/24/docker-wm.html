@@ -64,7 +64,7 @@
   <div class="post-content" itemprop="articleBody">
     <p><img src="http://csicar.github.io/assets/img/mate-desktop.png" alt="mate desktop" /></p>
 
-<h2 id="tldr-version">TL;DR-Version:</h2>
+<h1 id="tldr-version">TL;DR-Version:</h1>
 
 <p>run:
 <code class="highlighter-rouge">$ sudo pacman -S xorg-server-xephyr</code> or <code class="highlighter-rouge">$ sudo apt-get install xserver-xephyr </code></p>
@@ -75,7 +75,7 @@
 <code class="highlighter-rouge">bash
 $ docker run -it -e DISPLAY=:1 --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix  csicar/ubuntu-mate-desktop /usr/bin/mate-session</code></p>
 
-<h1 id="window-managers-inside-a-container">Window-Managers inside a container</h1>
+<h2 id="window-managers-inside-a-container">Window-Managers inside a container</h2>
 
 <p>As show <a href="http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/">here</a> docker is not only useful for server applications, but can also be used for desktop applications.</p>
 
