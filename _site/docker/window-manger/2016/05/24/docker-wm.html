@@ -85,7 +85,7 @@ $ docker run -it -e DISPLAY=:1 --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-uni
 1. Creating a virtual DISPLAY using a program like <a href="https://www.freedesktop.org/wiki/Software/Xephyr/">Xephyr</a>
 2. giving the container access to the <code class="highlighter-rouge">DISPLAY</code></p>
 
-<h2 id="creating-a-windowed-x-server">Creating a windowed X-Server</h2>
+<h3 id="creating-a-windowed-x-server">Creating a windowed X-Server</h3>
 
 <ol>
   <li>Installing Xephyr is pretty simple: Just do <code class="highlighter-rouge">sudo pacman -S xorg-server-xephyr</code> or <code class="highlighter-rouge">sudo apt-get install xserver-xephyr </code></li>
@@ -101,7 +101,7 @@ $ docker run -it -e DISPLAY=:1 --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-uni
   </li>
 </ol>
 
-<h2 id="giving-the-container-access-to-the-display">Giving the container access to the DISPLAY</h2>
+<h3 id="giving-the-container-access-to-the-display">Giving the container access to the DISPLAY</h3>
 
 <p>Just do: <code class="highlighter-rouge">docker run -e DISPLAY=:1 -v /tmp/.X11-unix:/tmp/.X11-unix [container-id]</code>
 - <code class="highlighter-rouge">-e DISPLAY=:1</code> will pass the value <code class="highlighter-rouge">:1</code> as a environment variable <code class="highlighter-rouge">DISPLAY</code> through to the container
@@ -109,9 +109,9 @@ $ docker run -it -e DISPLAY=:1 --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-uni
 
 <p>The rest just like you are used to with docker.</p>
 
-<h2 id="conclusion">Conclusion</h2>
+<h3 id="conclusion">Conclusion</h3>
 
-<h3 id="why">Why?</h3>
+<h4 id="why">Why?</h4>
 <p>because you can. And maybe because you can test new configurations of your WM (like i3) without worrying about breaking your main system.</p>
 
 <h4 id="what-makes-it-better-than-virtualbox">What makes it better than virtualbox?</h4>
