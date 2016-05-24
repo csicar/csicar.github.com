@@ -5,9 +5,101 @@
     <description>blog of csicar</description>
     <link>http://csicar.github.io/</link>
     <atom:link href="http://csicar.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Feb 2016 02:25:01 +0100</pubDate>
-    <lastBuildDate>Mon, 29 Feb 2016 02:25:01 +0100</lastBuildDate>
-    <generator>Jekyll v3.1.1</generator>
+    <pubDate>Tue, 24 May 2016 11:44:38 +0200</pubDate>
+    <lastBuildDate>Tue, 24 May 2016 11:44:38 +0200</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Running a window manager from inside a docker container</title>
+        <description>&lt;h2 id=&quot;tldr-version&quot;&gt;TL;DR-Version:&lt;/h2&gt;
+
+&lt;p&gt;run:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo pacman -S xorg-server-xephyr&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get install xserver-xephyr &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;run: &lt;code class=&quot;highlighter-rouge&quot;&gt;$ Xephyr :1 -ac -br -screen 1024x768 -resizeable -reset -terminate &amp;amp;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;run:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash
+$ docker run -it -e DISPLAY=:1 --device /dev/snd -v /tmp/.X11-unix:/tmp/.X11-unix  csicar/ubuntu-mate-desktop /usr/bin/mate-session&lt;/code&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;window-managers-inside-a-container&quot;&gt;Window-Managers inside a container&lt;/h1&gt;
+
+&lt;p&gt;As show &lt;a href=&quot;http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/&quot;&gt;here&lt;/a&gt; docker is not only useful for server applications, but can also be used for desktop applications.&lt;/p&gt;
+
+&lt;p&gt;Taking it a step further I wanted to run a window-manger from inside a docker container.&lt;/p&gt;
+
+&lt;p&gt;There are basically 2 steps to it:
+1. Creating a virtual DISPLAY using a program like &lt;a href=&quot;https://www.freedesktop.org/wiki/Software/Xephyr/&quot;&gt;Xephyr&lt;/a&gt;
+2. giving the container access to the &lt;code class=&quot;highlighter-rouge&quot;&gt;DISPLAY&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-windowed-x-server&quot;&gt;Creating a windowed X-Server&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Installing Xephyr is pretty simple: Just do &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo pacman -S xorg-server-xephyr&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install xserver-xephyr &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Now run &lt;code class=&quot;highlighter-rouge&quot;&gt;Xephyr :1 -ac -br -screen 1024x768 -resizeable -reset -terminate&lt;/code&gt; to create a X-Server
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;:1&lt;/code&gt; is the display-id; this will need to be passed to what ever wants to access the display&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-ac&lt;/code&gt; disables access control restrictions&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-br&lt;/code&gt; creates a window with a black background&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-screen 1024x768&lt;/code&gt; sets the default screen size&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-resizeable&lt;/code&gt; makes the screen (for the guest) and the window (for the host) resizeable&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;-reset&lt;/code&gt; closes the host-window, when the guest exits the X-Server&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;giving-the-container-access-to-the-display&quot;&gt;Giving the container access to the DISPLAY&lt;/h2&gt;
+
+&lt;p&gt;Just do: &lt;code class=&quot;highlighter-rouge&quot;&gt;docker run -e DISPLAY=:1 -v /tmp/.X11-unix:/tmp/.X11-unix [container-id]&lt;/code&gt;
+- &lt;code class=&quot;highlighter-rouge&quot;&gt;-e DISPLAY=:1&lt;/code&gt; will pass the value &lt;code class=&quot;highlighter-rouge&quot;&gt;:1&lt;/code&gt; as a environment variable &lt;code class=&quot;highlighter-rouge&quot;&gt;DISPLAY&lt;/code&gt; through to the container
+- &lt;code class=&quot;highlighter-rouge&quot;&gt;-v /tmp/.X11-unix:/tmp/.X11-unix&lt;/code&gt; will pass the file through to the container`&lt;/p&gt;
+
+&lt;p&gt;The rest just like you are used to with docker.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;h3 id=&quot;why&quot;&gt;Why?&lt;/h3&gt;
+&lt;p&gt;because you can. And maybe because you can test new configurations of your WM (like i3) without worrying about breaking your main system.&lt;/p&gt;
+
+&lt;h4 id=&quot;what-makes-it-better-than-virtualbox&quot;&gt;What makes it better than virtualbox?&lt;/h4&gt;
+&lt;p&gt;I get a lot beter performance when using a wm in a container instead of a vm.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 24 May 2016 13:29:00 +0200</pubDate>
+        <link>http://csicar.github.io/docker/window-manger/2016/05/24/docker-wm.html</link>
+        <guid isPermaLink="true">http://csicar.github.io/docker/window-manger/2016/05/24/docker-wm.html</guid>
+        
+        
+        <category>docker</category>
+        
+        <category>window-manger</category>
+        
+      </item>
+    
+      <item>
+        <title>Disable the Touchpad in Archlinux (on an T450s)</title>
+        <description>&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;device&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;xinput | grep TouchPad | grep -o &lt;span class=&quot;s2&quot;&gt;&quot;id=..&quot;&lt;/span&gt; | grep -o &lt;span class=&quot;s2&quot;&gt;&quot;[0-9]*&quot;&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;xinput list-props &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | grep &lt;span class=&quot;s2&quot;&gt;&quot;Device Enabled&quot;&lt;/span&gt; | grep -o &lt;span class=&quot;s2&quot;&gt;&quot;[01]$&quot;&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$state&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;1&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;;&lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;xinput --disable &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+  &lt;/span&gt;xinput --enable &lt;span class=&quot;nv&quot;&gt;$device&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 16 Apr 2016 13:29:00 +0200</pubDate>
+        <link>http://csicar.github.io/archlinux/thinkpad/2016/04/16/archlinux-touchpad-disable.html</link>
+        <guid isPermaLink="true">http://csicar.github.io/archlinux/thinkpad/2016/04/16/archlinux-touchpad-disable.html</guid>
+        
+        
+        <category>archlinux</category>
+        
+        <category>thinkpad</category>
+        
+      </item>
     
       <item>
         <title>Linux on the T450s Thinkpad</title>
@@ -25,7 +117,7 @@ the Fingerprint-Reader.&lt;/p&gt;
 I quickly ended up not really wanting to have it anymore.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;interesting-things-about-the-hardware&quot;&gt;Interesting things about the hardware&lt;/h2&gt;
+&lt;p&gt;##Interesting things about the hardware&lt;/p&gt;
 
 &lt;p&gt;I personally chose the T450s because it fits in the ultrabook-category while
 still have features that now a days you usually only find in thicker and bigger
@@ -56,7 +148,7 @@ but no matter what, they seemed to bug out after so time.&lt;/p&gt;
 &lt;p&gt;Even with a high quality PSU only &lt;code class=&quot;highlighter-rouge&quot;&gt;4.8 Volts&lt;/code&gt; where on the test points of the
 raspberry.&lt;/p&gt;
 
-&lt;h2 id=&quot;my-solution&quot;&gt;My Solution&lt;/h2&gt;
+&lt;p&gt;##My Solution&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Use a Buck-Converter that outputs about &lt;code class=&quot;highlighter-rouge&quot;&gt;5.2 Volts&lt;/code&gt;
@@ -67,7 +159,7 @@ raspberry.&lt;/p&gt;
   drop of the cable would be minimal.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;effectiveness&quot;&gt;Effectiveness&lt;/h2&gt;
+&lt;p&gt;##Effectiveness&lt;/p&gt;
 
 &lt;p&gt;Now the Raspberry runs at &lt;code class=&quot;highlighter-rouge&quot;&gt;5.1-5.2 Volts&lt;/code&gt; which is at the upper end of what the
 raspberry can handle.&lt;/p&gt;

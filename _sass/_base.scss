@@ -78,19 +78,6 @@ li {
     }
 }
 
-ul {
-  list-style: none;
-  > li {
-
-    &:before {
-      content: "- ";
-      font-weight: bold;
-      color: $monokai-red;
-      margin-left: -1.7em;
-    }
-  }
-}
-
 ol {
   counter-reset: item;
   > li {
